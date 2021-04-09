@@ -5,7 +5,7 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 
 public interface ProcessController{
-	void excludeByPID(ActionEvent event);
-	void excludeByName(ActionEvent event);
+	void excludeByPID(String Pid) throws IOException;
+	void excludeByName(String Name) throws IOException;
 	void listProcesses() throws IOException;
 }
