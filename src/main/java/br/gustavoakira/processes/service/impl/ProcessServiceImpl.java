@@ -63,8 +63,8 @@ public class ProcessServiceImpl implements ProcessService {
 		String regex = ",";
 		Process process = new Process();
 		String[] array = line.split(regex);
-		process.setName(array[0]);
-		process.setPid(array[1]);
+		process.setName(array[0].replaceAll("^\"+|\"+$", ""));
+		process.setPid(array[1].replaceAll("^\"+|\"+$", ""));
 		return process;
 	}
 }

@@ -1,5 +1,6 @@
-br\gustavoakira\processes\ProcessApp.class
-br\gustavoakira\processes\service\impl\ProcessServiceImpl.class
-br\gustavoakira\processes\service\ProcessService.class
 br\gustavoakira\processes\controller\ProcessController.class
 br\gustavoakira\processes\model\Process.class
+br\gustavoakira\processes\ProcessApp.class
+br\gustavoakira\processes\service\impl\ProcessServiceImpl.class
+br\gustavoakira\processes\controller\impl\ProcessControllerImpl.class
+br\gustavoakira\processes\service\ProcessService.class
