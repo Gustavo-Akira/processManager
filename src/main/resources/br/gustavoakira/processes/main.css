@@ -1,0 +1,43 @@
+.root{
+    -fx-font-size: 16pt;
+    -fx-font-family: "Courier New";
+    -fx-base: rgb(0, 0, 0);
+    -fx-background: #000;
+    -fx-text-fill: #FFF;
+}
+
+.button{
+    -fx-border-radius: 5;
+    -fx-border-size: 0;
+    -fx-padding: 5% 15% 15% 5%;
+}
+
+.table-view{
+	-fx-border:0;
+}
+
+.table-view .table-cell{
+	-fx-text-fill: #FFF;
+}
+
+.table-row-cell{
+    -fx-background-color: -fx-table-cell-border-color, #616161;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em; /* 0 */
+}
+
+.table-row-cell:odd{
+    -fx-background-color: -fx-table-cell-border-color, #424242;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em; /* 0 */  
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #000;
+    -fx-background-insets: 0;
+    -fx-background-radius: 1;
+}
+.table-view .column-header-background .label{
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}

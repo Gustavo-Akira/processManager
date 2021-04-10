@@ -14,6 +14,7 @@ public class ProcessApp extends Application{
 	public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
 		var scene = new Scene(new StackPane(),640, 480);
+		scene.getStylesheets().add(getClass().getResource("main.css").toString());
 		stage.setScene(scene);
 		scene.setRoot(root);
         stage.show();

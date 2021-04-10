@@ -15,11 +15,15 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.scene.AccessibleAttribute;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class ProcessControllerImpl implements ProcessController, Initializable {
@@ -58,27 +62,38 @@ public class ProcessControllerImpl implements ProcessController, Initializable {
 			process.add(x);
 		});
 		table.setItems(process);
+		table.refresh();
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		setCellsFactory();
-		initializeButtons();
 		try {
 			listProcesses();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		setCellsFactory();
+		initializeButtons();
 	}
 	
+	private void hideScrools() {
+		ScrollBar horizontalScroll =(ScrollBar) table.queryAccessibleAttribute(AccessibleAttribute.HORIZONTAL_SCROLLBAR);
+		ScrollBar verticalScroll =(ScrollBar)table.queryAccessibleAttribute(AccessibleAttribute.VERTICAL_SCROLLBAR);
+		horizontalScroll.setVisible(false);
+		verticalScroll.setVisible(false);
+	}
+
 	private void initializeButtons() {
 		actionCol.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
 		actionCol.setCellFactory(param -> new TableCell<Process, Process>(){
 			@Override
 			protected void updateItem(Process item, boolean empty) {
-				final VBox box = new VBox();
-				final Button deleteByName = new Button("Delete All with the same name");
+				final HBox box = new HBox();
+				final Button deleteByName = new Button("Delete All");
 				final Button deleteByPID  = new Button("Delete");
+				box.setMargin(deleteByPID,new Insets(1.0, 2.0, 2.0, 1.0));
+				box.setMargin(deleteByName,new Insets(1.0, 2.0, 2.0, 1.0));
+				
 				deleteByName.setOnAction(e ->{
 					try {
 						excludeByName(item.getName());
