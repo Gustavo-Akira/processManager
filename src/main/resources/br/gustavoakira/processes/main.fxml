@@ -4,8 +4,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.gustavoakira.processes.controller.impl.ProcessControllerImpl">
@@ -21,18 +23,28 @@
       </HBox>
    </top>
    <center>
-      <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-        <columns>
-          <TableColumn fx:id="nameCol" prefWidth="75.0" text="Name" />
-          <TableColumn fx:id="pidCol" prefWidth="75.0" text="PID" />
-            <TableColumn fx:id="actionCol" prefWidth="75.0" text="Action" />
-        </columns>
+      <VBox BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="10.0" left="20.0" right="20.0" />
          </BorderPane.margin>
-         <columnResizePolicy>
-            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-         </columnResizePolicy>
-      </TableView>
+         <children>
+            <HBox>
+               <children>
+                  <Label prefHeight="34.0" prefWidth="66.0" text="Name:" />
+                  <TextField fx:id="nameFilter" prefHeight="26.0" prefWidth="269.0" />
+               </children>
+            </HBox>
+            <TableView fx:id="table" prefHeight="277.0" prefWidth="560.0" VBox.vgrow="ALWAYS">
+              <columns>
+                <TableColumn fx:id="nameCol" prefWidth="75.0" text="Name" />
+                <TableColumn fx:id="pidCol" prefWidth="75.0" text="PID" />
+                  <TableColumn fx:id="actionCol" prefWidth="75.0" text="Action" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+         </children>
+      </VBox>
    </center>
 </BorderPane>

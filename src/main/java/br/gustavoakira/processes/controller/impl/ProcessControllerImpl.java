@@ -6,25 +6,22 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import br.gustavoakira.processes.controller.ProcessController;
+import br.gustavoakira.processes.model.Process;
 import br.gustavoakira.processes.service.ProcessService;
 import br.gustavoakira.processes.service.impl.ProcessServiceImpl;
-import br.gustavoakira.processes.model.Process;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.AccessibleAttribute;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 
 public class ProcessControllerImpl implements ProcessController, Initializable {
 
@@ -41,6 +38,9 @@ public class ProcessControllerImpl implements ProcessController, Initializable {
 	
 	@FXML
 	private TableColumn<Process, Process> actionCol; 
+	
+	@FXML
+	private TextField  nameFilter;
 	
 	@Override
 	public void excludeByPID(String Pid) throws IOException {
@@ -74,6 +74,7 @@ public class ProcessControllerImpl implements ProcessController, Initializable {
 		}
 		setCellsFactory();
 		initializeButtons();
+		initializeFilter();
 	}
 	private void initializeButtons() {
 		actionCol.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
@@ -113,10 +114,33 @@ public class ProcessControllerImpl implements ProcessController, Initializable {
 			}
 		});
 	}
+	private void initializeFilter() {
+		nameFilter.setOnAction(e->{
+			try {
+				filterAction();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		});
+	}
 	
+	private void filterAction() throws IOException {
+		listProcesses(nameFilter.getText());
+	}
 	private void setCellsFactory() {
 		nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
 		pidCol.setCellValueFactory(new PropertyValueFactory<>("pid"));
 	}
-
+	private void listProcesses(String filter) throws IOException {
+		List<Process> processes = service.getAllProccess();
+		ObservableList<Process> process = FXCollections.observableArrayList();
+		processes.forEach(x->{
+			if(x.getName().contains(filter)) {
+				process.add(x);
+			}
+		});
+		table.setItems(process);
+		table.refresh();
+	}
 }
