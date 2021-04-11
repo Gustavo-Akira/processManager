@@ -9,7 +9,6 @@
 .button{
     -fx-border-radius: 5;
     -fx-border-size: 0;
-    -fx-padding: 5% 15% 15% 5%;
 }
 
 .table-view{

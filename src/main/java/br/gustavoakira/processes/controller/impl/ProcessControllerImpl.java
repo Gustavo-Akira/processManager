@@ -75,14 +75,6 @@ public class ProcessControllerImpl implements ProcessController, Initializable {
 		setCellsFactory();
 		initializeButtons();
 	}
-	
-	private void hideScrools() {
-		ScrollBar horizontalScroll =(ScrollBar) table.queryAccessibleAttribute(AccessibleAttribute.HORIZONTAL_SCROLLBAR);
-		ScrollBar verticalScroll =(ScrollBar)table.queryAccessibleAttribute(AccessibleAttribute.VERTICAL_SCROLLBAR);
-		horizontalScroll.setVisible(false);
-		verticalScroll.setVisible(false);
-	}
-
 	private void initializeButtons() {
 		actionCol.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
 		actionCol.setCellFactory(param -> new TableCell<Process, Process>(){
