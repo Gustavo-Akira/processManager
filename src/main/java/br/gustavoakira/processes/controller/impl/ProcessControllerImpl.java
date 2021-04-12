@@ -16,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -63,6 +64,7 @@ public class ProcessControllerImpl implements ProcessController, Initializable {
 		});
 		table.setItems(process);
 		table.refresh();
+		initializeButtons();
 	}
 
 	@Override
@@ -73,7 +75,6 @@ public class ProcessControllerImpl implements ProcessController, Initializable {
 			e.printStackTrace();
 		}
 		setCellsFactory();
-		initializeButtons();
 		initializeFilter();
 	}
 	private void initializeButtons() {
@@ -105,12 +106,12 @@ public class ProcessControllerImpl implements ProcessController, Initializable {
 				});
 				box.getChildren().add(deleteByPID);
 				box.getChildren().add(deleteByName);
-				
-				if(empty) {
+				System.out.println(empty);
+				if(empty == true) {
 					setGraphic(null);
+				}else {
+					setGraphic(box);
 				}
-				
-				setGraphic(box);
 			}
 		});
 	}
@@ -136,7 +137,7 @@ public class ProcessControllerImpl implements ProcessController, Initializable {
 		List<Process> processes = service.getAllProccess();
 		ObservableList<Process> process = FXCollections.observableArrayList();
 		processes.forEach(x->{
-			if(x.getName().contains(filter)) {
+			if(x.getName().toLowerCase().contains(filter.toLowerCase())) {
 				process.add(x);
 			}
 		});

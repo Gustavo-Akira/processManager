@@ -28,12 +28,16 @@
             <Insets bottom="10.0" left="20.0" right="20.0" />
          </BorderPane.margin>
          <children>
-            <HBox>
+            <VBox>
                <children>
-                  <Label prefHeight="34.0" prefWidth="66.0" text="Name:" />
-                  <TextField fx:id="nameFilter" prefHeight="26.0" prefWidth="269.0" />
+                  <Label prefHeight="34.0" prefWidth="66.0" text="Name" />
+                  <TextField fx:id="nameFilter" prefHeight="26.0" prefWidth="269.0">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </TextField>
                </children>
-            </HBox>
+            </VBox>
             <TableView fx:id="table" prefHeight="277.0" prefWidth="560.0" VBox.vgrow="ALWAYS">
               <columns>
                 <TableColumn fx:id="nameCol" prefWidth="75.0" text="Name" />

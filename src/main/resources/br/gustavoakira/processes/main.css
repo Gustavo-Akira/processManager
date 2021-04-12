@@ -1,11 +1,13 @@
 .root{
     -fx-font-size: 16pt;
     -fx-font-family: "Courier New";
-    -fx-base: rgb(0, 0, 0);
-    -fx-background: #000;
+    -fx-base: #000;
+    -fx-background: #333;
     -fx-text-fill: #FFF;
 }
-
+.text-field{
+	-fx-background-color: #AAA;
+}
 .button{
     -fx-border-radius: 5;
     -fx-border-size: 0;
@@ -13,22 +15,18 @@
 
 .table-view{
 	-fx-border:0;
+	-fx-margin: 10px;
 }
 
 .table-view .table-cell{
 	-fx-text-fill: #FFF;
+	-fx-alignment: CENTER-LEFT;
 }
 
 .table-row-cell{
-    -fx-background-color: -fx-table-cell-border-color, #616161;
+    -fx-background-color: -fx-table-cell-border-color, #444;
     -fx-background-insets: 0, 0 0 1 0;
-    -fx-padding: 0.0em; /* 0 */
-}
-
-.table-row-cell:odd{
-    -fx-background-color: -fx-table-cell-border-color, #424242;
-    -fx-background-insets: 0, 0 0 1 0;
-    -fx-padding: 0.0em; /* 0 */  
+    -fx-padding: 0.0em;
 }
 
 .table-row-cell:selected {
